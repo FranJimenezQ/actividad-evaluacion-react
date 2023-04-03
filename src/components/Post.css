@@ -1,0 +1,35 @@
+.card-container{
+    margin: 10px 50px;
+}
+.cardPostImage {
+    width: 100%;
+    height: 260px;
+    display: flex;
+    animation-direction: normal;
+    background-color: whitesmoke;
+}
+.cardPostLikes{
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+.heartIcon{
+    color: red;
+}
+
+.CarBody1{
+    display: flex;
+}
+.cardPostFecha{
+    flex-grow: 0;
+}
+.cardPostAutor{
+    flex-grow: 10;
+}
+.commentIcon{
+    color: black;
+    padding: 5px;
+}
+.CarBody3{
+    display: flex;
+}

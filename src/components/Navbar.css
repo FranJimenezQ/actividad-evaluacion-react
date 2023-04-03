@@ -1,0 +1,20 @@
+.navbar.bg-dark {
+  background-color: whitesmoke;
+  }
+  .container-fluid {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.navTitle{
+  margin-left: 5px;
+}
+.nav-icon{
+  display: flex;
+  flex-direction: row;
+}
+.div-search.mb-3 {
+  display: flex;
+  margin: 10px 50px;
+}
