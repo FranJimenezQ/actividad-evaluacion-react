@@ -3,7 +3,6 @@
 }
 .cardPostImage {
     width: 100%;
-    height: 260px;
     display: flex;
     animation-direction: normal;
     background-color: whitesmoke;
