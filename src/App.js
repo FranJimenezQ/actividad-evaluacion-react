@@ -1,15 +1,17 @@
 import './App.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import LoginPage from './components/login';
 import Navbar from './components/Navbar';
 import PostList from './components/PostList';
 import SearchBar from './components/SearchBar';
-import { getProfiles } from './services/postServices';
+import { getProfiles, Login, token } from './services/postServices';
 
 function App() {
   const [profiles, setProfiles] = useState([null]);
   const [searchTerm, setSearchTerm] = useState("");
-  
-    const handleSearch = (term) => {
+  const [auth, setAuth] = useState(token); 
+ 
+  const handleSearch = (term) => {
       setSearchTerm(term);
     };
 
@@ -19,6 +21,18 @@ function App() {
         setProfiles(data);
       });
     };  
+
+    const handleClick = (username, password)=>{
+     Login(username, password)
+     .then( () =>{
+      setAuth(true); 
+     });
+    }
+
+    if(!auth){
+
+      return <LoginPage onSubmit={handleClick}></LoginPage>
+    }
   return (
     <div className="App">
     <Navbar handleGetAllProfiles={handleGetAllProfiles}></Navbar> 
