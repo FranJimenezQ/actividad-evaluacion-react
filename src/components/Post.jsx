@@ -2,11 +2,17 @@ import './Post.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faComment } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react';
+
 
   const heartIcon = <FontAwesomeIcon icon={faHeart}/>
   const commentIcon = <FontAwesomeIcon icon={faComment} />
 
-function Post({fecha, likes, autor, description, image, comments }) {
+function Post({fecha, autor, description, image, comments }) {
+    const [likes, setLikes] = useState(0);
+    const handleLikesClick = () => {
+        setLikes(likes + 1);
+    }
 
     return (
         <div className="card card-container">
@@ -21,7 +27,7 @@ function Post({fecha, likes, autor, description, image, comments }) {
                 <div className="cardPostAutor">
                     <p className="card-text">@{autor}</p>
                 </div>
-                <div className="cardPostLikes">
+                <div className="cardPostLikes"onClick={handleLikesClick}>
                     <i className='heartIcon'>{heartIcon}</i>                
                     <p className="card-text">{likes}</p>
                 </div>

@@ -1,10 +1,13 @@
 import './App.css';
+import './App.js'
 import React, { useState } from 'react';
 import LoginPage from './components/login';
 import Navbar from './components/Navbar';
 import PostList from './components/PostList';
 import SearchBar from './components/SearchBar';
 import { getProfiles, Login, token } from './services/postServices';
+import Profile from './pages/Profile';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   const [profiles, setProfiles] = useState([null]);
@@ -37,7 +40,10 @@ function App() {
     <div className="App">
     <Navbar handleGetAllProfiles={handleGetAllProfiles}></Navbar> 
     <SearchBar handleSearch={handleSearch} onChange={handleSearch}></SearchBar>
-    <PostList profiles={profiles} searchTerm={searchTerm}></PostList>     
+    <Routes>
+      <Route path="/" element={<PostList profiles={profiles} searchTerm={searchTerm}></PostList>} />     
+      <Route path="/profile" element={<Profile></Profile>} />     
+    </Routes>
     </div>
   );
 }

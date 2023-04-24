@@ -1,9 +1,8 @@
-import { createElement } from "react";
 import data from "../profiles.json";
 import axios from "axios"
 
-export const token = localStorage.getItem("token");
-
+export let token = localStorage.getItem("token");
+export let invalid = false;
 export function getProfiles() {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -19,11 +18,29 @@ export function Login(username, password){
   .post("https://three-points.herokuapp.com/api/login",
   {
     username:username,
-    password:password
+    password:password,
+    Body: { username: username, password: password },
+    "Content-Type": 'application/json'
   })
-  .then(res => {
-    localStorage.setItem("token", res.data.token)
+  .then((res) => {
     console.log(res.data)
-    return res
+    if (res.data.token) {
+      localStorage.setItem("token", res.data.token);
+      console.log("token:",token);
+      return res.data.token;
+    } else {
+      token = ''
+      invalid = true;
+      console.log("invalid:", invalid);
+      return false;
+    }
   })
+  .catch((error) => {
+    if (invalid) {
+      invalid = true;
+      console.log("invalid:", invalid);
+    }
+    console.log("error:", error);
+    return error;
+  });
 }
