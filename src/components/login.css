@@ -10,9 +10,10 @@
     flex-direction: column;
 }
 .invalid{
-    background-color: indianred;
-    border-color: red;
-    color: brown;
+    background-color: rgb(250, 209, 209);
+    border: 1px;
+    border-color: red rgba(170, 50, 220, .6) green;
+    color: #602121;
     display: none;
 }
 .invalid-block{

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './login.css'
-import { invalid } from '../services/postServices';
+import { invalid, token } from '../services/postServices';
 
 function LoginPage ({onSubmit}) {
   const [username, setUsername] = useState('');
@@ -16,11 +16,13 @@ function LoginPage ({onSubmit}) {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-      if(invalid === true){  
-        document.getElementsByClassName(".invalid").classList.add("invalid-block")
+      if(token == null || false){  
+
+        document.getElementById('invalid').classList.add('invalid-block')
+
       }
         if (!username || !password) {
-          document.getElementsByClassName(".invalid").classList.add("invalid-block")
+          
           return;
         }
         onSubmit(username, password);
@@ -33,7 +35,7 @@ function LoginPage ({onSubmit}) {
         <h1 className = "loginPage-title">Log in to All your pics</h1>
         <form className='login-form needs-validation' onSubmit={(handleSubmit)}>
           <div className="invalid" id='invalid'>
-            <p>Invalid email or password</p>
+            <p>Invalid user name or password</p>
           </div>
             <div className="form-group mb-3">
                 <input className='form-control form-input form-check-input' 

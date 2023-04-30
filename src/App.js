@@ -2,12 +2,14 @@ import './App.css';
 import './App.js'
 import React, { useState } from 'react';
 import LoginPage from './components/login';
+import {handleSubmit} from './components/login';
 import Navbar from './components/Navbar';
 import PostList from './components/PostList';
 import SearchBar from './components/SearchBar';
 import { getProfiles, Login, token } from './services/postServices';
 import Profile from './pages/Profile';
 import { Route, Routes } from 'react-router-dom';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [profiles, setProfiles] = useState([null]);
@@ -27,12 +29,17 @@ function App() {
 
     const handleClick = (username, password)=>{
      Login(username, password)
-     .then( () =>{
-      setAuth(true); 
-     });
+     console.log(Login())
+     if(token == null || false){
+      setAuth(false);
+     }else{
+      setAuth(true);
+     }
+     
     }
 
     if(!auth){
+      console.log(auth)
 
       return <LoginPage onSubmit={handleClick}></LoginPage>
     }

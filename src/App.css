@@ -27,6 +27,12 @@
 .App-link {
   color: #61dafb;
 }
+.invalid{
+  background-color: indianred;
+  border-color: red;
+  color: brown;
+  display: none;
+}
 
 @keyframes App-logo-spin {
   from {

@@ -3,6 +3,7 @@ import axios from "axios"
 
 export let token = localStorage.getItem("token");
 export let invalid = false;
+
 export function getProfiles() {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -17,10 +18,8 @@ export function Login(username, password){
   return axios
   .post("https://three-points.herokuapp.com/api/login",
   {
-    username:username,
-    password:password,
-    Body: { username: username, password: password },
-    "Content-Type": 'application/json'
+    username,
+    password
   })
   .then((res) => {
     console.log(res.data)
@@ -29,16 +28,19 @@ export function Login(username, password){
       console.log("token:",token);
       return res.data.token;
     } else {
-      token = ''
-      invalid = true;
+      token = null
+      invalid = false;
       console.log("invalid:", invalid);
       return false;
     }
   })
   .catch((error) => {
-    if (invalid) {
+    if (error.response.status != 200) {
       invalid = true;
+      token = false;
       console.log("invalid:", invalid);
+      console.log("token:", token);
+
     }
     console.log("error:", error);
     return error;
